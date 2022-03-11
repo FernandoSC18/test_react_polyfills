@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom"
 import LogArea from "../components/logArea"; 
+import {fetch as fetchPolyfill} from 'whatwg-fetch'
 
 const endpointCoutries = 'https://restcountries.com/v3.1/all' 
 
@@ -29,7 +30,7 @@ export default function Lista (){
     }, [])
 
     
-    const methodGet = (url = '', headers = {}) => fetch(url, {
+    const methodGet = (url = '', headers = {}) => fetchPolyfill(url, {
         method: 'GET',
         headers: {
         Accept: 'application/json',

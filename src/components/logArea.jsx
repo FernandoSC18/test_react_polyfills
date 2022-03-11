@@ -14,7 +14,7 @@ export default function LogArea ({textList}){
   
     return <div style={LogStyle}>  
           {textList.map((e, i)=>{
-              return <p style={RowStyle}> {'# ' + e} </p>
+              return <p key={i} style={RowStyle}> {'# ' + e} </p>
           })} 
     </div>
 }
