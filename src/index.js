@@ -1,20 +1,34 @@
  
-import './polyfills' 
+//import './polyfills' 
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css'; 
-import reportWebVitals from './reportWebVitals'; 
- 
+import reportWebVitals from './reportWebVitals';  
+import { Routes , Route, BrowserRouter as Router } from "react-router-dom";
+import Home from './pages/home'
+import Lista from './pages/lista'
 
-const element = <>
-    <h1>Hello, world</h1>
+const paddingStyle = {
+  padding: '0 15px'
+}
 
-    <p>Test to safari 9 / webkit 601.1 </p>
+const App = () => {  
 
-</>;
 
-ReactDOM.render(element, document.getElementById('root'));
+  return <div style={paddingStyle}>   
+          <Router>   
+              <Routes >
+                <Route exact path="/" element={<Home/>} /> 
+                <Route exact path="/lista" element={<Lista/> } /> 
+              </Routes >
+          </Router>
+    </div>
+}
+
+ReactDOM.render(<React.StrictMode>
+                  <App />
+                </React.StrictMode>, document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
