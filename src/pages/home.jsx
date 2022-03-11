@@ -1,8 +1,11 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-
-
+ 
 export default function Home (){
-
+ 
+    useEffect (async ()=>{ 
+        console.log('En pagina :Inicio')
+    }, [])
 
     return <>
         <h1>Inicio</h1>

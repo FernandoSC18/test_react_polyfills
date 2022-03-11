@@ -8,6 +8,7 @@ export default function Lista (){
     const [listaPaises, setListaPaises] = useState()
 
     useEffect (async ()=>{
+        console.log('En pagina :Lista')
   
         const result = await methodGet(endpointCoutries, null, null) 
 
@@ -29,7 +30,7 @@ export default function Lista (){
     const ComponentList = () => listaPaises 
         ? listaPaises.map((element, index)=>{ 
 
-            console.log('element', element)
+            console.log('length', listaPaises.length)
 
             return  <div key={index}> 
                 <li>{element.name.common}</li>
