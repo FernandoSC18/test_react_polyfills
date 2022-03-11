@@ -1,16 +1,27 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom"
+import LogArea from "../components/logArea"; 
 
 const endpointCoutries = 'https://restcountries.com/v3.1/all' 
 
 export default function Lista (){
 
     const [listaPaises, setListaPaises] = useState()
+    const [textList, setTextList] = useState([])  
 
-    useEffect (async ()=>{
-        console.log('En pagina :Lista')
-  
+    useEffect (async ()=>{ 
+
+        const allText = textList.slice() 
+ 
+        allText.push('En pagina :Lista') 
+        setTextList (allText) 
+   
+        allText.push('Inicia Peticion Fetch') 
+        setTextList (allText) 
         const result = await methodGet(endpointCoutries, null, null) 
+ 
+        allText.push('Termina Peticion Fetch') 
+        setTextList (allText) 
 
         if (result){
             setListaPaises(result)
@@ -44,6 +55,15 @@ export default function Lista (){
         <Link to="/">  
             <p> Volver a Inicio</p>
         </Link> 
+        
+        <button onClick={()=>{  
+            const allText = textList.slice()
+            allText.push('Example Log') 
+            setTextList (allText) 
+        }}>ADD MESAJE</button>
+
+        <LogArea textList={textList}/>
+
         <ComponentList/> 
 
     </>
