@@ -1,35 +1,49 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
-
-const paises = ['México', 'Estados Unidos', 'Argentina', 'Peru']
+const endpointCoutries = 'https://restcountries.com/v3.1/all' 
 
 export default function Lista (){
 
     const [listaPaises, setListaPaises] = useState()
 
-    useEffect (()=>{
+    useEffect (async ()=>{
+  
+        const result = await methodGet(endpointCoutries, null, null) 
 
-        if (paises){
-            setListaPaises(paises)
+        if (result){
+            setListaPaises(result)
         } 
     }, [])
 
+    
+    const methodGet = (url = '', headers = {}) => fetch(url, {
+        method: 'GET',
+        headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json', 
+        ...headers 
+        }
+    }).then((response) => response.json())
+
     const ComponentList = () => listaPaises 
         ? listaPaises.map((element, index)=>{ 
+
+            console.log('element', element)
+
             return  <div key={index}> 
-                <li>{element}</li>
+                <li>{element.name.common}</li>
             </div> 
           }) 
-        : <div> No hay Datos</div>  
+        : <div> Cargando Datos </div>  
 
     return <>
         <h1>Lista De ejemplo</h1> 
 
-        <ComponentList/> 
-
         <Link to="/">  
             <p> Volver a Inicio</p>
         </Link> 
+        <ComponentList/> 
+
     </>
 }
