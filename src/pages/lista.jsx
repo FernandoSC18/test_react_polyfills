@@ -12,6 +12,7 @@ export default function Lista (){
 
     useEffect (async ()=>{ 
 
+        console.log('useEffect Lista')
         const allText = textList.slice() 
  
         allText.push('En pagina :Lista') 

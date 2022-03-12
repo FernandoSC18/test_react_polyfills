@@ -8,6 +8,7 @@ export default function Home (){
 
     useEffect (()=>{   
  
+        console.log('useEffect Home')
         const allText = textList.slice()
         allText.push('En pagina :Inicio') 
         setTextList (allText) 
